@@ -1,0 +1,136 @@
+---
+title: "Assignment 4 "
+author: "Botlhe Tseme"
+date: "26/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Q1.
+
+### (a)
+
+```{r echo=FALSE}
+set.seed(1)
+die = sample(c(1:6), 1000, replace = TRUE )
+success = rep(0, 1000)
+for( i in 1:100)
+{
+	if( die[i] <= 2){ success[i] == 1}
+}
+hat.p = mean(success)
+```
+
+### (b)
+
+```{r}
+X = rnorm(50, 3, 1)
+Y = 2*X + rnorm (50)
+
+covFUN = function (x, y){
+  n = length(x)
+  xbar = mean( x )
+  ybar = mean( y )
+  cova = ( sum ( (x - xbar) * (y - ybar) ) )/ (n -1)
+  return ( cova )
+}
+covFUN( y=Y, X )
+```
+
+## Q2.
+
+### (a)
+
+```{r echo=TRUE}
+gini.fn = function (x) {
+  n = length(x)
+  a = 0
+  b = 0
+  for (i in 1:n){
+    a = a + (i*x[i])
+    b = b + (x[i])
+  }
+  result = ((2*a)/(n*b)) - ((n+1)/n)
+  return (result)
+}
+gini.fn
+```
+
+### (b)
+
+```{r}
+a = c(23.1, 15.9, 21.0, 26.0, 25.1, 14.7, 24.2, 16.6, 18.2, 16.5, 20.7, 15.3, 17.7, 19.1, 22.7, 21.9, 14.6, 26.3, 25.8, 9.4, 17.0, 21.2, 17.9, 24.7, 21.1, 17.2, 19.1, 22.7, 24.0, 24.7, 22.5, 8.3, 2.5, 30.4)
+
+gini.fn(a)
+```
+
+## Q3.
+
+```{r}
+func = function(x) {
+  cos(x) + sin(2*x) - cos(3*x)
+}
+
+newton.raphson = function(f, a, b, tol = 1e-5, n = 1000) {
+  x0 = a 
+  k = n 
+  
+  fa = f(a)
+  if (fa == 0.0) {
+    return(a)
+  }
+  
+  fb = f(b)
+  if (fb == 0.0) {
+    return(b)
+  }
+  for (i in 1:n) {
+    dx = genD(func = f, x = x0)$D[1] # First-order derivative f'(x0)
+    x1 = x0 - (f(x0) / dx) # Calculate next value x1
+    k[i] = x1 
+    # Once the difference between x0 and x1 becomes sufficiently small, output the results.
+    if (abs(x1 - x0) < tol) {
+      root.approx = tail(k, n=1)
+      res = list('root approximation' = root.approx, 'iterations' = k)
+      return(res)
+    }
+    
+    x0 = x1
+  }
+  print('Too many iterations in method')
+}
+
+newton.raphson(func, 0.1, 2*pi)
+```
+
+
+## Q4.
+
+### (a)
+
+```{r}
+func.ts = function(x, tol) {
+  n = 1
+  ts = 1
+  err = 100
+  
+  while (err > tol) {
+    ts_old = ts
+    n = n + 1
+    ts = 1 - x*x/(2*n+2)/(2*n+1)*ts_old
+    err = abs(ts - ts_old)
+  }
+  
+  return (ts)
+}
+```
+
+### (b)
+
+```{r}
+  func.ts(pi/4, 0.001)
+```
+

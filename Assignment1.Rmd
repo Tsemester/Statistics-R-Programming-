@@ -1,0 +1,118 @@
+---
+title: "Assignment 1"
+author: "Tseme Botlhe 201802398"
+date: "2/15/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Q1 
+
+```{r}
+x=c(0,2,5,3,4,5,2,4,2,2)
+y=c(1,-1)
+
+
+
+```
+Q1 A 
+```{r}
+sum(x*y)^2
+### We are summing all the vectors in object x after multiplying them with vectors in object y and powering the sum to 2 
+
+
+
+```
+
+
+
+Q1 B 
+```{r}
+sin((pi*x)/length(y))
+###we are finding the sin of pi * x vectors of object x and diving it by the length of vectors in object y 
+
+
+
+```
+
+
+Q1 C
+```{r}
+y/1:6 - x 
+### in this snippet we are to divide the vectors in the y object from the vector number one in the object to vector number6 then subracting x its going to compile but it will guve us a warning that the y objects its vectors are shorter 
+```
+
+Q2 
+A
+```{r}
+
+
+
+x=pi
+y=exp(1)
+
+numerator=x^2*y^4
+denominator=(x^2-y)^2
+answer=numerator/denominator
+log(answer,base=2/3)
+
+```
+
+B
+
+```{r}
+numerator=abs(1-sqrt(pi))
+denominator=1+tan(1.03)
+
+(numerator/denominator)^(1/4)
+```
+
+
+Q3
+
+A)
+
+```{r}
+Height= c(180, 165, 171, 160, 193, 175)
+Weight= c(87, 58, 65, NA, 100, 75)
+
+```
+
+B
+```{r}
+BMI = Weight/(Height^2)
+
+cv = sd(BMI, na.rm=TRUE)/mean(BMI, na.rm=TRUE)
+cv
+```
+
+
+Q4
+
+```{r}
+
+data(mammals, package = "MASS")
+model.lm=lm(log(brain)~log(body),data=mammals) 
+summary(model.lm)
+
+##Line 1 = We have installed a package called Mass and we are loading the mammals dataset after activation of the package  
+##Line 2=We created a model and We are now  fitting a linear regression model of log brain and log body from the dataset mammals 
+##Line 3=  We have a summary of the model 
+##The minimum of the is -1.71550 and the first quartile is -0.492228 , the median is -0.06162 , the third quartile is 0.43597 An the max is 1.984829 and at the bottom is the linear regression  of the model 
+
+
+
+```
+
+Q5
+
+```{r}
+A = matrix(c(1,0,1,0,2,-1,2,1,1), nrow = 3, ncol = 3, byrow = TRUE)
+A
+P = eigen(A)
+P = P$vectors
+P
+```
+

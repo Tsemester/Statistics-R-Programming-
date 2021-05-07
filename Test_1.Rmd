@@ -1,0 +1,137 @@
+---
+title: "Test 1 "
+author: "Tseme Botlhe 201802398"
+date: "13/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Q1
+
+*A*
+```{r}
+exp(c(1,1) %*% matrix(c(4,2,2,9), 2)^(1/2) %*% c(1,1))
+
+##1.We have a function  exp with 2 values 1 and 1 
+##2.We have a matrix with 4 values 4,2,2,9 respectively divided into 2 columns and 2 rows and raised to  0.5  
+##3.We also have c 1,1 which is the restriction or the boundary 
+##4.We find the exponential of exp(1,1) which is 2.718282 respectively 
+##5.We then multiply that by the 2 rows and 2 columns of the matrix 
+##6.When we do matrix multiplication: The number of columns of the 1st matrix must equal the number of rows of the 2nd matrix. And the result will have the same number of rows as the 1st matrix and in our case we have only 1 matrix and when its divided its equals exp(1,1) and c (1,1) respectively and therefore we are going to get a single figure and whatever the results we get we are going to raise it to the power 0.5 
+
+
+
+```
+
+
+*B*
+*i*
+```{r}
+x = sqrt(pi)
+n = 0:10
+approxExpVal=sum(x^n/factorial(n))
+
+
+approxExpVal
+
+
+
+
+
+
+```
+*ii*
+```{r}
+x=sqrt(pi)
+exp(x)
+
+###The answers are the same 
+
+```
+#Q2
+
+*A*
+```{r}
+X=rpois(100,8)
+Y=2.5 + 0.9*X + rnorm(100, 0, 2)
+myData=data.frame(X,Y)
+
+#find the correlation matrix
+round(cor(myData),2)  
+#convert to standardized scores
+myData=scale(myData)
+
+myData
+
+```
+
+*B*
+```{r}
+
+```
+
+# Q3
+*A*
+```{r}
+names=c('KABELO','DAVID','LERATO','BATHO')
+Surname=c('MALOME','APRIL','SEBAGA','KGOSI')
+id=c('202001428','202000090','202000178','202005533')
+ 
+names
+Surname
+id 
+```
+
+*B*
+```{r}
+email=paste0(id,'@ub.ac.bw')
+email
+```
+
+*C*
+```{r}
+
+
+library(stringr)
+surname1=str_remove_all(Surname,"[AEIOU]")
+name_=substr(names,1,3)
+surname_=substr(surname1,1,3)
+n_last=4
+id_=substr(id, nchar(id) - n_last + 1, nchar(id))
+paste(surname_,name_,id_,sep='')
+
+```
+
+
+# Q4
+
+*A*
+```{r}
+
+
+
+mpg=c(21.0,21.0,15.8,19.7,15.0)
+cyl=c(6,6,8,6,8)
+wt=c(2.620,2.875,3.170,2.770,3.570)
+vs=c(0,0,0,0,0)
+am=c(1,1,1,1,1)
+cars=data.frame(mpg,cyl,wt,vs,am)
+cars
+
+
+```
+
+*B*
+
+```{r}
+
+mean(mpg)
+sd(mpg)
+```
+
+
+
+
+

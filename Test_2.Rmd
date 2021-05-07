@@ -1,0 +1,126 @@
+---
+title: "Test 2"
+author: "Botlhe Tseme 201802398 "
+date: "30/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load
+library(dplyr)
+```
+
+
+#Q1
+
+##a
+
+```{r}
+
+f = c(52, 56, 56, 54, 48, 71, 58, 54, 44, 64, 69, 46, 51, 49, 60, 65, 40, 67, 43, 60, 59, 58, 55, 64, 61, 47, 63, 44, 46, 50, 69, 57, 50, 41, 53, 62, 60, 62, 55, 61, 47, 62, 38, 56, 49, 52, 62, 59, 58, 60)
+
+h = hist(f, 
+         breaks=8, 
+         col="gray", 
+         border="cornflowerblue", 
+         main="", 
+         xlab="Final Mark (%)", 
+         xlim=c(30,80))
+x= seq(30,80, length.out=length(f))
+y = dnorm(x, mean=mean(f), sd=sd(f))
+lines(x, y, col = "orange")
+```
+
+##b Comment
+
+#Q2
+
+##a
+
+```{r}
+BWA_QGDP = read.csv("C:/Users/TSEME BOTLHE/Downloads/BWA_QGDP.csv")
+df = BWA_QGDP %>% mutate(rate=(QGDP-lag(QGDP,4))/lag(QGDP,4)*100)
+an = as.vector(df$rate)
+an=an[!is.na(an)]
+```
+
+##b
+
+```{r}
+plot(an,)
+```
+
+
+##Q3
+
+###a
+
+```{r}
+S = function(P, r, n, t) {
+  nu =( ( 1+(r/n) )^(n*t) ) - 1
+  de = r/n
+  
+  return (P*(nu/de))
+}
+```
+
+###b 
+```{r}
+t=1
+s = 0
+while(s <100000) {
+  s = S(1000,2.75, 12, t)
+  t= t+1
+}
+t
+```
+
+
+##Q4
+
+###a
+
+```{r}
+library(gapminder)
+tblgapminder <- tbl_df(gapminder)
+
+tblgapminder %>%
+  filter(continent == "Africa" ) %>%
+  arrange(desc(gdpPercap)) %>%
+  top_n(5)
+```
+
+###b
+```{r}
+
+ x= tblgapminder$gdpPercap
+ y = tblgapminder$lifeExp
+plot(x ,y , main = "GDP Vs Life Expectancy", 
+     xlab = "GDP Per capita", 
+     ylab = "Life expectancy (years)")
+
+
+###Plotted the graph first to see the relationship 
+
+###Check for the correlation which is a  positive correlation 
+
+cor(x,y)
+
+###Fitting The model 
+
+lifeExpVsGdppercapita=lm(y~x)
+lifeExpVsGdppercapita
+summary(lifeExpVsGdppercapita)
+plot(x ,y , main = "Life Expectancy Vs Gdp Per Capita", 
+     xlab = "GDP Per capita", 
+     ylab = "Life expectancy (years)")
+
+
+abline(lifeExpVsGdppercapita)
+
+lifeExpVsGdppercapita
+
+
+```

@@ -1,0 +1,83 @@
+---
+title: "Assignment 3"
+author: "Botlhe Tseme"
+date: "05/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(haven)
+library(nycflights13)
+suppressMessages(library(dplyr))
+```
+
+Q1
+
+a
+
+```{r}
+credit_all = read_sav("C:/Users/tseme/Downloads/credit.sav")
+credit = select(credit_all,gender, card, type, items, spent)
+summary(credit)
+
+```
+
+b
+
+```{r}
+x1 = filter(credit, gender==0)
+items1 = select(x1, items)
+avg_items1 = mean(items1$items)
+
+x2 = filter(credit, gender==1)
+items2 = select(x2, items)
+avg_items2 = mean(items2$items)
+
+y1 = filter(credit, gender==0)
+spent1 = select(x1, spent)
+avg_spent1 = mean(spent1$spent)
+
+y2 = filter(credit, gender==1)
+spent2 = select(x2, spent)
+avg_spent2 = mean(spent2$spent)
+
+agg.credit = data.frame(
+  gender = c(0,1),
+  items = c(avg_items1, avg_items2),
+  spent = c(avg_spent1, avg_spent2)
+)
+View(agg.credit)
+```
+
+Q2
+
+a
+
+```{r}
+tblflights <- tbl_df(weather)
+```
+
+q3
+
+a
+
+```{r}
+
+```
+
+
+q4
+
+q5
+
+```{r}
+neet = data.frame(
+  age = c('15-17', '18-19', '20-24', '25-29', '30-34', '35'),
+  Male = c(12.3, 41.0, 43.5, 38.3, 33.6, 29.3),
+  Female = c(14.0, 38.3, 45.6, 47.3, 39.3, 40.6)
+)
+```
+
+
